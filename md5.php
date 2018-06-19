@@ -8,10 +8,10 @@
      <h3>Enter the information</h3>    
 
     <form method="POST" action="md5"> 
-    Name: <input type="text" name="name">
+    Name: <input type="text" name="name" placeholder="name">
   
     <br><br>
-    Password: <input type="password" name="password">
+    Password: <input type="password" name="password" placeholder= "password">
 
     <br><br>
     <button type="submit">Submit</button>   
@@ -20,9 +20,9 @@
 <?php
 $name=$password="";
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
-     if ((empty($_POST["name"])) || (empty($_POST["password"])))
+     if ( (empty($_POST["name"])) || (empty($_POST["password"])) || (!preg_match("/^[a-zA-Z'-]+$/",$_POST["name"])) )
      {
-        echo "Both name and password are required <br>";
+        echo "Couldn't submit..! either fields are empty or format of name is invalid <br>";
      }
      else{
      $name=$_POST["name"];
